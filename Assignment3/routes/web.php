@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/register', function () {return view('register');});
-Route::post('/register', [RegisterController::class, 'submit'])->name('register.submit');
+
+use App\Http\Controllers\OrderController;
+
+Route::get('/customer/{id}/{name}/{address}', [OrderController::class, 'customerDetails']);
+Route::get('/item/{itemNo}/{name}/{price}', [OrderController::class, 'item']);
+Route::get('/order/{customerId}/{name}/{orderNo}/{date}', [OrderController::class, 'order']);
+Route::get('/orderdetails/{transNo}/{orderNo}/{itemID}/{itemName}/{price}/{qty}', [OrderController::class, 'orderDetails']);
